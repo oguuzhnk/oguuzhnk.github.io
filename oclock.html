@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O'Clock</title>
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+    
+    
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #810000;
+        }
+
+        header {
+            background-color: #f5f5f5;
+            color: #810000;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px  #eee;
+        }
+
+        header h1 {
+            margin: 0;
+            .michroma-regular {
+            font-family: "Michroma", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+}
+
+        }
+
+       
+        .sepet a {
+            color: #810000;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+    
+        
+
+        .banner img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            max-height: 450px;
+            border-radius: 0;
+        }
+
+        .koleksiyon-baslik h2 {
+            font-size: 1.5em;
+            color: #000000;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .koleksiyon-baslik p {
+            font-size: 1em;
+            color: #444;
+            font-style: italic;
+            max-width: 700px;
+        }
+    
+        main {
+            padding: 20px 30px;
+        }
+
+        .filtre-arama-alani {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .kategori-filtreleri {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filtre-butonu {
+            padding: 8px 16px;
+            font-size: 0.9em;
+            font-weight: bold;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .filtre-butonu:hover {
+            background-color: #ddd;
+        }
+
+        .filtre-butonu.aktif {
+            background-color: #900000;
+            color: white;
+            border-color: #900000;
+        }
+
+        .arama-kutusu {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 250px;
+        }
+        .urun-listesi {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px;
+        }
+
+        .urun-karti {
+            background-color: white;
+            border: 1px solid #fcd8d8;
+            border-radius: 8px;
+            text-align: center;
+            color: #474747;
+            box-shadow: 0 2px 5px ;
+            display: flex; 
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .urun-karti:hover {
+            box-shadow: 0 1px 5px #630000;
+        }
+        .urun-karti img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .urun-bilgisi {
+            padding: 15px;
+            flex-grow: 1; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .urun-buton-alani {
+            padding: 0 15px 15px 15px;
+        }
+
+        .urun-karti .fiyat {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #940000;
+            margin-top: 10px;
+        }
+
+        .urun-karti button {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            border: 1px solid #900000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+        }
+
+        
+        .urun-karti button:hover {
+            background-color: #e5e5e5;
+        }
+
+        /* Alt Bilgi (Footer) */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: #420000;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>O'Clock</h1>
+        <div class="sepet">
+            <a href="#">Sepetim</a>
+        </div>
+    </header>
+    
+    <div class="banner">
+        <img src="images/banner2.jpg" alt="banner">
+    </div>
+
+    <div class="koleksiyon-baslik">
+        <h2>Koleksiyonumuz</h2>
+        <p>Dakiklik karakter meselesidir, şıklık ise tercihtir. Biz ikisini de kutuya koyduk.. #OClockZamanı</p>
+    </div>
+
+    <main>
+        <div class="filtre-arama-alani">
+            <div class="kategori-filtreleri">
+                <button class="filtre-butonu aktif" data-kategori="tumu">Tümü</button>
+                <button class="filtre-butonu" data-kategori="tag">TAG Heuer</button>
+                <button class="filtre-butonu" data-kategori="hamilton">Hamilton</button>
+                <button class="filtre-butonu" data-kategori="akilli">Akıllı Saat</button>
+                <button class="filtre-butonu" data-kategori="welder">Welder</button>
+                <button class="filtre-butonu" data-kategori="trintec">Trintec</button>
+            </div>
+            <div class="arama-alani">
+                <input type="text" id="aramaKutusu" class="arama-kutusu" placeholder="Model ara...">
+            </div>
+        </div>
+        <div class="urun-listesi">
+
+            <div class="urun-karti" data-kategori="tag">
+                <img src="images/tag1.jpg" alt="Tag">
+                <div class="urun-bilgisi">
+                    <h3>TAG Heuer Carrera Date</h3>
+                    <p class="fiyat">196.800,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="tag">
+                <img src="images/tag2.jpg" alt="tag">
+                <div class="urun-bilgisi">
+                    <h3>TAG Heuer Formula 1 X Senna</h3>
+                    <p class="fiyat">206.400,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="tag">
+                <img src="images/tag3.jpg" alt="Tag">
+                <div class="urun-bilgisi">
+                    <h3>TAG Heuer Carrera Date</h3>
+                    <p class="fiyat">99.200,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="tag">
+                <img src="images/tag4.jpg" alt="tag">
+                <div class="urun-bilgisi">
+                    <h3>TAG HEUER S/EL 1988 Vintage Koleksiyon</h3>
+                    <p class="fiyat">50.000,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="tag">
+                <img src="images/tag5.jpg" alt="tag">
+                <div class="urun-bilgisi">
+                    <h3>TAG Heuer Connected</h3>
+                    <p class="fiyat">72.500,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="hamilton">
+                <img src="images/hamilton1.jpg" alt="Hamilton">
+                <div class="urun-bilgisi">
+                    <h3>Hamilton Jazzmaster Open Heart</h3>
+                    <p class="fiyat">53.380,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="hamilton">
+                <img src="images/hamilton2.jpg" alt="Hamilton">
+                <div class="urun-bilgisi">
+                    <h3>Hamilton Jazzmaster Open Heart</h3>
+                    <p class="fiyat">49.900,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="hamilton">
+                <img src="images/hamilton3.jpg" alt="hamilton">
+                <div class="urun-bilgisi">
+                    <h3>Hamilton Ventura Quartzo</h3>
+                    <p class="fiyat">43.700,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="akilli">
+                <img src="images/apple1.jpg" alt="apple">
+                <div class="urun-bilgisi">
+                    <h3>Apple Watch Ultra 2</h3>
+                    <p class="fiyat">55.999,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="akilli">
+                <img src="images/samsung1.jpg" alt="samsung">
+                <div class="urun-bilgisi">
+                    <h3>Samsung Galaxy Watch Ultra</h3>
+                    <p class="fiyat">43.999,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+            
+            <div class="urun-karti" data-kategori="welder">
+                <img src="images/welder1.jpg" alt="welder">
+                <div class="urun-bilgisi">
+                    <h3>Welder WWRD100S</h3>
+                    <p class="fiyat">148.000,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="welder">
+                <img src="images/welder2.jpg" alt="welder">
+                <div class="urun-bilgisi">
+                    <h3>Welder WRT1003</h3>
+                    <p class="fiyat">22.750,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="welder">
+                <img src="images/welder3.jpg" alt="welder">
+                <div class="urun-bilgisi">
+                    <h3>Welder WWRC415</h3>
+                    <p class="fiyat">9.920,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="welder">
+                <img src="images/welder4.jpg" alt="welder">
+                <div class="urun-bilgisi">
+                    <h3>Welder WWRC1034</h3>
+                    <p class="fiyat">9.570,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="welder">
+                <img src="images/welder5.jpg" alt="welder">
+                <div class="urun-bilgisi">
+                    <h3>Welder WWRC833</h3>
+                    <p class="fiyat">5.200,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="trintec">
+                <img src="images/trintec1.jpg" alt="trintec">
+                <div class="urun-bilgisi">
+                    <h3>Trintec NAV-03</h3>
+                    <p class="fiyat">17.000,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="trintec">
+                <img src="images/trintec2.jpg" alt="trintec">
+                <div class="urun-bilgisi">
+                    <h3>Tirintec 30th Anniversary</h3>
+                    <p class="fiyat">21.675,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="trintec">
+                <img src="images/trintec3.jpg" alt="trintec">
+                <div class="urun-bilgisi">
+                    <h3>Trintec Directional Gyro</h3>
+                    <p class="fiyat">19.700,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="trintec">
+                <img src="images/trintec4.jpg" alt="trintec">
+                <div class="urun-bilgisi">
+                    <h3>Tirintec CoPilot</h3>
+                    <p class="fiyat">15.000,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+            <div class="urun-karti" data-kategori="trintec">
+                <img src="images/trintec5.jpg" alt="trintec">
+                <div class="urun-bilgisi">
+                    <h3>Tirintec NAV-03</h3>
+                    <p class="fiyat">17.000,00 ₺</p>
+                </div>
+                <div class="urun-buton-alani">
+                    <button>Sepete Ekle</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p> O'Clock Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filtreButonlari = document.querySelectorAll('.filtre-butonu');
+            const aramaKutusu = document.getElementById('aramaKutusu');
+            const urunKartlari = document.querySelectorAll('.urun-karti');
+
+            function urunleriFiltrele() {
+                const aktifKategori = document.querySelector('.filtre-butonu.aktif').dataset.kategori;
+                const aramaTerimi = aramaKutusu.value.toLowerCase();
+
+                urunKartlari.forEach(kart => {
+                    const urunKategorisi = kart.dataset.kategori;
+                    const urunAdi = kart.querySelector('h3').textContent.toLowerCase();
+                   
+                    const kategoriEslesiyor = (aktifKategori === 'tumu' || urunKategorisi === aktifKategori)
+                    const aramaEslesiyor = urunAdi.includes(aramaTerimi);
+                    if (kategoriEslesiyor && aramaEslesiyor) {
+                        kart.style.display = 'flex'; 
+                    } else {
+                        kart.style.display = 'none';
+                    }
+                });
+            }
+            filtreButonlari.forEach(buton => {
+                buton.addEventListener('click', () => {
+                    document.querySelector('.filtre-butonu.aktif').classList.remove('aktif');
+                    buton.classList.add('aktif');
+                    urunleriFiltrele();
+                });
+            });
+            aramaKutusu.addEventListener('input', urunleriFiltrele);
+        });
+    </script>
+</body>
+</html>
